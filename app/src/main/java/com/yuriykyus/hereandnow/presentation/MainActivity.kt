@@ -15,12 +15,15 @@ class MainActivity : AppCompatActivity() {
     private val cityStorage by lazy {
         CityStorageImpl(applicationContext)
     }
+
     private val cityRepository by lazy(LazyThreadSafetyMode.NONE) {
         CityRepositoryImpl(cityStorage)
     }
+
     private val getCityName by lazy(LazyThreadSafetyMode.NONE) {
         GetCityName(cityRepository = cityRepository)
     }
+
     private val getCityPhoto by lazy(LazyThreadSafetyMode.NONE) {
         GetCityPhoto(cityRepository = cityRepository)
     }
