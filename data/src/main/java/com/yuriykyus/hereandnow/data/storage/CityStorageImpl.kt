@@ -1,6 +1,7 @@
 package com.yuriykyus.hereandnow.data.storage
 
 import android.content.Context
+import com.yuriykyus.hereandnow.data.Utils
 import com.yuriykyus.hereandnow.domain.models.CityName
 import com.yuriykyus.hereandnow.domain.models.CityPhoto
 
@@ -14,7 +15,8 @@ class CityStorageImpl(context: Context) : CityStorage {
         context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
 
     override fun getName(): City {
-        val city = sharedPreferences.getString(KEY_NAME, DEFAULT_CITY_NAME) ?: DEFAULT_CITY_NAME
+        val city: String = Utils.getCity()
+//        val city = sharedPreferences.getString(KEY_NAME, DEFAULT_CITY_NAME) ?: DEFAULT_CITY_NAME
         return City(city)
     }
 
