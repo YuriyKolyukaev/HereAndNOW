@@ -16,13 +16,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.liveData.observe(this, Observer { text ->
-            binding.tvCity.text = text
-        })
-
         viewModel = ViewModelProvider(this, MainViewModelFactory(this))
             .get(MainViewModel::class.java)
 
-        binding.tvCity.text = viewModel.getCity()
+        viewModel.state.observe(this, Observer { state ->
+            binding.tvCity.text = state.cityName
+        })
+
+        viewModel.send(LoadCityEvent())
     }
 }
