@@ -1,6 +1,6 @@
 package com.yuriykyus.hereandnow.data.repository
 
-import com.yuriykyus.hereandnow.data.storage.City
+import com.yuriykyus.hereandnow.data.storage.models.City
 import com.yuriykyus.hereandnow.data.storage.CityStorage
 import com.yuriykyus.hereandnow.domain.models.CityName
 import com.yuriykyus.hereandnow.domain.models.CityPhoto
