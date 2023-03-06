@@ -14,9 +14,8 @@ class NetworkManager : Network {
     private val client = Client()
 
     override fun getPhotoList(tag: String, text: String, networkCallback: NetworkCallback) {
-        val photoListApi = client.getPhotoListApi()
 
-        photoListApi.getPhotoList(
+        client.getPhotoListApi().getPhotoList(
             method = "flickr.photos.search",
             NetworkConstants.KEY,
             tag,
