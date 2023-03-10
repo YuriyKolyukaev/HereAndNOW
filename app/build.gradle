@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.yuriykyus.hereandnow'
+    namespace 'com.yuriykyus.walry'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.yuriykyus.hereandnow"
+        applicationId "com.yuriykyus.walry"
         minSdk 23
         targetSdk 33
         versionCode 1
