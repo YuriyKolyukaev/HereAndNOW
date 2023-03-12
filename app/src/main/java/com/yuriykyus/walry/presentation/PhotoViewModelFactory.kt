@@ -10,7 +10,7 @@ import com.yuriykyus.walry.data.storage.sharedprefs.CitySharedPrefs
 import com.yuriykyus.walry.domain.usecase.GetCityNameUseCase
 import com.yuriykyus.walry.domain.usecase.GetCityPhotoUseCase
 
-class MainViewModelFactory(context: Context) : ViewModelProvider.Factory {
+class PhotoViewModelFactory(context: Context) : ViewModelProvider.Factory {
 
     private val photoRepository by lazy {
         PhotoRepositoryImpl(App.networkManager)
@@ -29,7 +29,7 @@ class MainViewModelFactory(context: Context) : ViewModelProvider.Factory {
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainViewModel(
+        return PhotoViewModel(
             getCityNameUseCase = getCityNameUseCase,
             getCityPhotoUseCase = getCityPhotoUseCase
         ) as T

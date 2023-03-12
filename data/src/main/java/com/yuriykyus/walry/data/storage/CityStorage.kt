@@ -1,7 +1,7 @@
 package com.yuriykyus.walry.data.storage
 
 import com.yuriykyus.walry.data.storage.models.City
-import com.yuriykyus.walry.domain.models.CityName
+import com.yuriykyus.walry.domain.models.PhotoData
 import com.yuriykyus.walry.domain.models.CityPhoto
 
 interface CityStorage {
@@ -9,5 +9,5 @@ interface CityStorage {
 
     fun saveName(city: City): Boolean
 
-    fun getPhoto(cityName: CityName): CityPhoto
+    fun getPhoto(photoData: PhotoData): CityPhoto
 }

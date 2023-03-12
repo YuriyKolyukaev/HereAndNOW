@@ -4,7 +4,7 @@ import android.content.Context
 import com.yuriykyus.walry.data.Utils
 import com.yuriykyus.walry.data.storage.CityStorage
 import com.yuriykyus.walry.data.storage.models.City
-import com.yuriykyus.walry.domain.models.CityName
+import com.yuriykyus.walry.domain.models.PhotoData
 import com.yuriykyus.walry.domain.models.CityPhoto
 
 private const val SHARED_PREFS_NAME = "shared_prefs_name"
@@ -27,7 +27,7 @@ class CitySharedPrefs(context: Context) : CityStorage {
         return true
     }
 
-    override fun getPhoto(cityName: CityName): CityPhoto {
+    override fun getPhoto(photoData: PhotoData): CityPhoto {
         return CityPhoto(photoUrl = "https://live.staticflickr.com/65535/52706675986_d0b86a7021_b.jpg")
     }
 }

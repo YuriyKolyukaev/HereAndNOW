@@ -1,11 +1,11 @@
 package com.yuriykyus.walry.presentation.events
 
-import com.yuriykyus.walry.domain.models.CityName
+import com.yuriykyus.walry.domain.models.PhotoData
 
 sealed interface MainEvent
 
 object LoadCityEvent : MainEvent
 
-class LoadPhotoEvent(val cityName: CityName) : MainEvent {
+class LoadPhotoEvent(val photoData: PhotoData) : MainEvent {
 
 }

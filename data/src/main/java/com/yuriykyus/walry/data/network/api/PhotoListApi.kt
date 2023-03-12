@@ -12,6 +12,7 @@ interface PhotoListApi {
         @Query("api_key") key: String,
         @Query("tags") tags: String,
         @Query("text") text: String,
+        @Query("content_type") type: Int,
         @Query("format") format: String,
         @Query("nojsoncallback") callBack: String
     ): Call<PhotosData>

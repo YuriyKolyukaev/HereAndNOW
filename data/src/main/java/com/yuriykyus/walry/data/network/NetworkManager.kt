@@ -16,12 +16,13 @@ class NetworkManager : Network {
     override fun getPhotoList(tag: String, text: String, networkCallback: NetworkCallback) {
 
         client.getPhotoListApi().getPhotoList(
-            method = "flickr.photos.search",
+            method = NetworkConstants.API_METHOD_NAME,
             NetworkConstants.KEY,
             tag,
             text,
-            format = "json",
-            callBack = "1"
+            type = NetworkConstants.API_CONTENT_TYPE,
+            format = NetworkConstants.API_RESPONSE_FORMAT,
+            callBack = NetworkConstants.API_CALLBACK_NUMBER
         )
             .enqueue(object :
                 Callback<PhotosData> {

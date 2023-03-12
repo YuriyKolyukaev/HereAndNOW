@@ -1,4 +1,4 @@
-package com.yuriykyus.walry.presentation
+package com.yuriykyus.walry.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
