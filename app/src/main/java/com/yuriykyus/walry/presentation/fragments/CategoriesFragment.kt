@@ -22,8 +22,6 @@ class CategoriesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
     }
 
 
@@ -34,6 +32,5 @@ class CategoriesFragment : BaseFragment() {
     override fun getTitle(): String {
         return AppConstants.CATEGORY_FRAGMENT
     }
-
 
 }

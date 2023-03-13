@@ -1,6 +1,7 @@
 package com.yuriykyus.walry.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.yuriykyus.walry.presentation.PhotoViewModel
 import com.yuriykyus.walry.presentation.PhotoViewModelFactory
 import com.yuriykyus.walry.presentation.events.LoadCityEvent
 import com.yuriykyus.walry.presentation.events.LoadPhotoEvent
+import com.yuriykyus.walry.presentation.observeViewState
 import com.yuriykyus.walry.presentation.states.PhotoState
 
 class IllustrWallppaperFragment : BaseFragment() {
@@ -46,8 +48,11 @@ class IllustrWallppaperFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("KOLUS", "onViewCreated: ")
         initAdapter()
         showLoad()
+
+        observeViewModel()
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
@@ -80,6 +85,22 @@ class IllustrWallppaperFragment : BaseFragment() {
 
     override fun getTitle(): String {
         return AppConstants.ILLUST_WALLPAPER_FRAGMENT
+    }
+
+    private fun observeViewModel() {
+        viewModel.listCitiesLiveData.observeViewState(viewLifecycleOwner) {
+            onSuccess { data ->
+                adapter.addPhotoUrlList(data)
+                hideLoad()
+            }
+            onError { error, isShowError ->
+                hideLoad()
+            }
+
+            onProgress {
+                showLoad()
+            }
+        }
     }
 
 }

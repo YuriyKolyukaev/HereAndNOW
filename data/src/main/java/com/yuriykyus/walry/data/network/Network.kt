@@ -1,6 +1,9 @@
 package com.yuriykyus.walry.data.network
+import com.yuriykyus.walry.data.network.response.PhotosData
 import com.yuriykyus.walry.domain.models.NetworkCallback
+import com.yuriykyus.walry.domain.models.PhotoData
 
 interface Network {
-    fun getPhotoList(tag: String, text: String, networkCallback: NetworkCallback)
+    suspend fun getPhotoList(tag: String, text: String): PhotosData?
+
 }

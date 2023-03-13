@@ -16,15 +16,15 @@ class PhotoViewModelFactory(context: Context) : ViewModelProvider.Factory {
         PhotoRepositoryImpl(App.networkManager)
     }
 
-    private val cityRepository by lazy(LazyThreadSafetyMode.NONE) {
+    private val cityRepository by lazy {
         CityRepositoryImpl(cityStorageImpl = CitySharedPrefs(context = context))
     }
 
-    private val getCityNameUseCase by lazy(LazyThreadSafetyMode.NONE) {
+    private val getCityNameUseCase by lazy {
         GetCityNameUseCase(cityRepository = cityRepository)
     }
 
-    private val getCityPhotoUseCase by lazy(LazyThreadSafetyMode.NONE) {
+    private val getCityPhotoUseCase by lazy {
         GetCityPhotoUseCase(photoRepository = photoRepository)
     }
 

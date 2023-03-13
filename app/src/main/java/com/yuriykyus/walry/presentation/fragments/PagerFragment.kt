@@ -11,6 +11,12 @@ import com.yuriykyus.walry.presentation.adapters.ViewPagerAdapter
 
 class PagerFragment : BaseFragment() {
 
+    private var categoriesFragment: CategoriesFragment? = null
+    private var cityFragment: CityFragment? = null
+    private var newWallpaperFragment: NewWallpaperFragment? = null
+    private var popWallpaperFragment: PopWallpaperFragment? = null
+    private var illustrWallppaperFragment: IllustrWallppaperFragment? = null
+
     private val binding by lazy {
         FragmentPagerBinding.inflate(layoutInflater)
     }
@@ -25,9 +31,14 @@ class PagerFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (savedInstanceState != null) {
+
+        }
+
         val viewPager = binding.viewPager
 
         viewPager.adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
+        viewPager.isSaveEnabled = false
 
         TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
             val vp = viewPager.adapter as ViewPagerAdapter
@@ -45,4 +56,13 @@ class PagerFragment : BaseFragment() {
         return AppConstants.PAGER_FRAGMENT_NAME
     }
 
+    private fun createFragmentsList(): List< BaseFragment> {
+        return listOf(
+            CategoriesFragment.newInstance(),
+            CityFragment.newInstance(),
+            NewWallpaperFragment.newInstance(),
+            PopWallpaperFragment.newInstance(),
+            IllustrWallppaperFragment.newInstance()
+        )
+    }
 }

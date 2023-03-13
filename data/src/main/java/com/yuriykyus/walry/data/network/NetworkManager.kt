@@ -13,9 +13,9 @@ class NetworkManager : Network {
 
     private val client = Client()
 
-    override fun getPhotoList(tag: String, text: String, networkCallback: NetworkCallback) {
+    override suspend fun getPhotoList(tag: String, text: String): PhotosData? {
 
-        client.getPhotoListApi().getPhotoList(
+       return client.getPhotoListApi().getPhotoList(
             method = NetworkConstants.API_METHOD_NAME,
             NetworkConstants.KEY,
             tag,
@@ -24,41 +24,41 @@ class NetworkManager : Network {
             format = NetworkConstants.API_RESPONSE_FORMAT,
             callBack = NetworkConstants.API_CALLBACK_NUMBER
         )
-            .enqueue(object :
-                Callback<PhotosData> {
-                override fun onResponse(call: Call<PhotosData>, response: Response<PhotosData>) {
-                    if (response.isSuccessful && response.body() != null) {
-
-                        val photoList: List<PhotosData.Photos.Photo>? =
-                            response.body()?.photos?.photo
-                        val photoUrlList = mutableListOf<CityPhoto>()
-                        var photoUrl: String
-
-                        if (photoList != null && photoList.isNotEmpty()) {
-                            for (n in photoList.indices) {
-
-                                val item = photoList[n]
-                                val server = item.server
-                                val id = item.id
-                                val secret = item.secret
-
-                                photoUrl =
-                                    "$PHOTO_BASE_URL${server}/${id}_${secret}_$SIZE_SUFFIX_B"
-                                photoUrlList.add(n, CityPhoto(photoUrl))
-                            }
-
-                            networkCallback.onResponse(photoUrlList)
-                        }
-
-                    } else {
-                        networkCallback.onError(response.errorBody().toString())
-                    }
-                }
-
-                override fun onFailure(call: Call<PhotosData>, t: Throwable) {
-                    networkCallback.onError(t.message.toString())
-                }
-            })
+//            .enqueue(object :
+//                Callback<PhotosData> {
+//                override fun onResponse(call: Call<PhotosData>, response: Response<PhotosData>) {
+//                    if (response.isSuccessful && response.body() != null) {
+//
+//                        val photoList: List<PhotosData.Photos.Photo>? =
+//                            response.body()?.photos?.photo
+//                        val photoUrlList = mutableListOf<CityPhoto>()
+//                        var photoUrl: String
+//
+//                        if (photoList != null && photoList.isNotEmpty()) {
+//                            for (n in photoList.indices) {
+//
+//                                val item = photoList[n]
+//                                val server = item.server
+//                                val id = item.id
+//                                val secret = item.secret
+//
+//                                photoUrl =
+//                                    "$PHOTO_BASE_URL${server}/${id}_${secret}_$SIZE_SUFFIX_B"
+//                                photoUrlList.add(n, CityPhoto(photoUrl))
+//                            }
+//
+//                            networkCallback.onResponse(photoUrlList)
+//                        }
+//
+//                    } else {
+//                        networkCallback.onError(response.errorBody().toString())
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<PhotosData>, t: Throwable) {
+//                    networkCallback.onError(t.message.toString())
+//                }
+//            })
     }
 
 }

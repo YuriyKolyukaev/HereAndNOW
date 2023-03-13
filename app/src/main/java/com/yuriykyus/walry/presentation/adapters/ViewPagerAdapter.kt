@@ -14,6 +14,8 @@ class ViewPagerAdapter(fragment: FragmentManager, lifeCircle: androidx.lifecycle
     private val popWallpaperFragment = PopWallpaperFragment.newInstance()
     private val illustrWallppaperFragment = IllustrWallppaperFragment.newInstance()
 
+
+
     private val fragments = arrayOf(
         categoriesFragment,
         cityFragment,
