@@ -29,7 +29,7 @@ class SearchFragment : BaseFragment() {
 
     }
 
-    override fun getTitle(): String {
+    fun getTitle(): String {
         return AppConstants.SEARCH_FRAGMENT
     }
 }

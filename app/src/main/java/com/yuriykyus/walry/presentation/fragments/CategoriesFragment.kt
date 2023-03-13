@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yuriykyus.walry.core.AppConstants
 import com.yuriykyus.walry.databinding.FragmentCategoriesBinding
 
 class CategoriesFragment : BaseFragment() {
@@ -15,7 +14,6 @@ class CategoriesFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -24,13 +22,8 @@ class CategoriesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-
     companion object {
         fun newInstance() = CategoriesFragment()
-    }
-
-    override fun getTitle(): String {
-        return AppConstants.CATEGORY_FRAGMENT
     }
 
 }

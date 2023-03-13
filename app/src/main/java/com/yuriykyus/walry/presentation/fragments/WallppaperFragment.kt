@@ -6,27 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.yuriykyus.walry.core.AppConstants
+import com.yuriykyus.walry.core.observeViewState
 import com.yuriykyus.walry.databinding.FragmentPhotoListBinding
 import com.yuriykyus.walry.domain.models.PhotoData
+import com.yuriykyus.walry.presentation.adapters.PhotoAdapter
 import com.yuriykyus.walry.presentation.PhotoViewModel
 import com.yuriykyus.walry.presentation.PhotoViewModelFactory
-import com.yuriykyus.walry.presentation.adapters.PhotoAdapter
 import com.yuriykyus.walry.presentation.events.LoadCityEvent
 import com.yuriykyus.walry.presentation.events.LoadPhotoEvent
-import com.yuriykyus.walry.presentation.states.PhotoState
 
-class NewWallpaperFragment : BaseFragment() {
-    companion object {
-        fun newInstance() = NewWallpaperFragment()
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
-        private const val API_TAG = "new"
-        private const val API_TEXT = "wallpaper"
-    }
-
-    private val binding by lazy {
-        FragmentPhotoListBinding.inflate(layoutInflater)
-    }
+class WallppaperFragment : BaseFragment() {
 
     private lateinit var adapter: PhotoAdapter
 
@@ -35,6 +27,10 @@ class NewWallpaperFragment : BaseFragment() {
             this,
             PhotoViewModelFactory(requireActivity())
         )[PhotoViewModel::class.java]
+    }
+
+    private val binding by lazy {
+        FragmentPhotoListBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(
@@ -47,19 +43,33 @@ class NewWallpaperFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        showLoad()
-
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is PhotoState -> {
-                    adapter.addPhotoUrlList(state.photosUrl)
-                    hideLoad()
-                }
-            }
-        }
+        observeViewModel()
 
         viewModel.send(LoadCityEvent)
-        viewModel.send(LoadPhotoEvent(photoData = PhotoData(API_TAG, API_TEXT)))
+        viewModel.send(
+            LoadPhotoEvent(
+                photoData = PhotoData(
+                    requireArguments().getString(ARG_PARAM1).toString(),
+                    requireArguments().getString(ARG_PARAM2).toString()
+                )
+            )
+        )
+    }
+
+    private fun observeViewModel() {
+        viewModel.listCitiesLiveData.observeViewState(viewLifecycleOwner) {
+            onSuccess { data ->
+                adapter.addPhotoUrlList(data)
+                hideLoad()
+            }
+            onError { error, isShowError ->
+                hideLoad()
+            }
+
+            onProgress {
+                showLoad()
+            }
+        }
     }
 
     private fun initAdapter() {
@@ -71,8 +81,14 @@ class NewWallpaperFragment : BaseFragment() {
         }
     }
 
-    override fun getTitle(): String {
-        return AppConstants.NEW_WALLPAPER_FRAGMENT
+    companion object {
+        fun newInstance(requestTag: String, requestText: String) =
+            WallppaperFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, requestTag)
+                    putString(ARG_PARAM2, requestText)
+                }
+            }
     }
 
 }

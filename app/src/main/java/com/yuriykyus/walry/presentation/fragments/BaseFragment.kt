@@ -4,8 +4,6 @@ import androidx.fragment.app.Fragment
 import com.yuriykyus.walry.presentation.Navigator
 
 abstract class BaseFragment : Fragment() {
-    abstract fun getTitle(): String
-
     fun getNavigator(): Navigator {
         return (requireActivity() as Navigator)
     }

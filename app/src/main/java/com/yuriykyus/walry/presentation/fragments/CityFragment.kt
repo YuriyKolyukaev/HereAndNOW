@@ -14,15 +14,8 @@ import com.yuriykyus.walry.presentation.PhotoViewModelFactory
 import com.yuriykyus.walry.presentation.adapters.PhotoAdapter
 import com.yuriykyus.walry.presentation.events.LoadCityEvent
 import com.yuriykyus.walry.presentation.events.LoadPhotoEvent
-import com.yuriykyus.walry.presentation.states.PhotoState
 
 class CityFragment : BaseFragment() {
-    companion object {
-        fun newInstance() = CityFragment()
-
-        private const val API_TAG = "Архитектура"
-        private const val API_TEXT = "Москва"
-    }
 
     private val binding by lazy {
         FragmentPhotoListBinding.inflate(layoutInflater)
@@ -47,16 +40,6 @@ class CityFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        showLoad()
-
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is PhotoState -> {
-                    adapter.addPhotoUrlList(state.photosUrl)
-                    hideLoad()
-                }
-            }
-        }
 
         viewModel.send(LoadCityEvent)
         viewModel.send(LoadPhotoEvent(photoData = PhotoData(API_TAG, API_TEXT)))
@@ -71,7 +54,11 @@ class CityFragment : BaseFragment() {
         }
     }
 
-    override fun getTitle(): String {
-        return AppConstants.CITY_FRAGMENT
+    companion object {
+        fun newInstance() = CityFragment()
+
+        private const val API_TAG = "Архитектура"
+        private const val API_TEXT = "Москва"
     }
+
 }

@@ -11,12 +11,6 @@ import com.yuriykyus.walry.presentation.adapters.ViewPagerAdapter
 
 class PagerFragment : BaseFragment() {
 
-    private var categoriesFragment: CategoriesFragment? = null
-    private var cityFragment: CityFragment? = null
-    private var newWallpaperFragment: NewWallpaperFragment? = null
-    private var popWallpaperFragment: PopWallpaperFragment? = null
-    private var illustrWallppaperFragment: IllustrWallppaperFragment? = null
-
     private val binding by lazy {
         FragmentPagerBinding.inflate(layoutInflater)
     }
@@ -52,17 +46,4 @@ class PagerFragment : BaseFragment() {
         }
     }
 
-    override fun getTitle(): String {
-        return AppConstants.PAGER_FRAGMENT_NAME
-    }
-
-    private fun createFragmentsList(): List< BaseFragment> {
-        return listOf(
-            CategoriesFragment.newInstance(),
-            CityFragment.newInstance(),
-            NewWallpaperFragment.newInstance(),
-            PopWallpaperFragment.newInstance(),
-            IllustrWallppaperFragment.newInstance()
-        )
-    }
 }

@@ -1,4 +1,4 @@
-package com.yuriykyus.walry.presentation
+package com.yuriykyus.walry.core
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
