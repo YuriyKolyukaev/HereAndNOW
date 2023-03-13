@@ -74,6 +74,4 @@ class CityFragment : BaseFragment() {
     override fun getTitle(): String {
         return AppConstants.CITY_FRAGMENT
     }
-
-
 }

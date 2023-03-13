@@ -1,14 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".presentation.fragments.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_search"
+            app:tint="@color/white" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:autofillHints=""
+            android:background="@android:color/transparent"
+            android:hint="Search For..."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/white" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginHorizontal="2dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Искать везде"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/tv_chip_state_list"
+                    android:textSize="16sp"
+                    app:checkedIconEnabled="false"
+                    app:checkedIconVisible="false"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipStrokeColor="@color/grey"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginHorizontal="2dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Фотографии"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/tv_chip_state_list"
+                    android:textSize="16sp"
+                    app:checkedIconEnabled="false"
+                    app:checkedIconVisible="false"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipStrokeColor="@color/grey"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginHorizontal="2dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Скриншоты"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/tv_chip_state_list"
+                    android:textSize="16sp"
+                    app:checkedIconEnabled="false"
+                    app:checkedIconVisible="false"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipStrokeColor="@color/grey"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginHorizontal="2dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Другое"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/tv_chip_state_list"
+                    android:textSize="16sp"
+                    app:checkedIconEnabled="false"
+                    app:checkedIconVisible="false"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipStrokeColor="@color/grey"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginHorizontal="2dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Фотографии и скриншоты"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/tv_chip_state_list"
+                    android:textSize="16sp"
+                    app:checkedIconEnabled="false"
+                    app:checkedIconVisible="false"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipStrokeColor="@color/grey"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginHorizontal="2dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Фотографии и другое"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/tv_chip_state_list"
+                    android:textSize="16sp"
+                    app:checkedIconEnabled="false"
+                    app:checkedIconVisible="false"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipStrokeColor="@color/grey"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginHorizontal="2dp"
+                    android:checkable="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Скриншоты и другое"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/tv_chip_state_list"
+                    android:textSize="16sp"
+                    app:checkedIconEnabled="false"
+                    app:checkedIconVisible="false"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipStrokeColor="@color/grey"
+                    app:chipStrokeWidth="1dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

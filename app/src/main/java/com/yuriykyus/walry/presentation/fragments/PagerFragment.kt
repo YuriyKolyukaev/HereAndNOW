@@ -11,7 +11,6 @@ import com.yuriykyus.walry.presentation.adapters.ViewPagerAdapter
 
 class PagerFragment : BaseFragment() {
 
-
     private val binding by lazy {
         FragmentPagerBinding.inflate(layoutInflater)
     }
@@ -28,7 +27,7 @@ class PagerFragment : BaseFragment() {
 
         val viewPager = binding.viewPager
 
-        viewPager.adapter = ViewPagerAdapter(parentFragmentManager, lifecycle)
+        viewPager.adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
 
         TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
             val vp = viewPager.adapter as ViewPagerAdapter
