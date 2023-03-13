@@ -8,5 +8,6 @@ class AppConstants {
         const val NEW_WALLPAPER_FRAGMENT = "Новые"
         const val POP_WALLPAPER_FRAGMENT = "Популярные"
         const val ILLUST_WALLPAPER_FRAGMENT = "Иллюстрации"
+        const val SEARCH_FRAGMENT = "Поиск"
     }
 }

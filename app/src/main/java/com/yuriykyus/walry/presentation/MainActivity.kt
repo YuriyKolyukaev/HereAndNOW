@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.yuriykyus.walry.databinding.ActivityMainBinding
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import com.yuriykyus.walry.presentation.fragments.BaseFragment
 import com.yuriykyus.walry.presentation.fragments.PagerFragment
 
 class MainActivity : AppCompatActivity(), Navigator {
@@ -16,14 +18,14 @@ class MainActivity : AppCompatActivity(), Navigator {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setPagerFragment()
+        addFragment(PagerFragment())
+
+        onBackPressedDis()
     }
 
-    private fun setPagerFragment() {
-        val fragmentManager = supportFragmentManager
-
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(binding.container.id, PagerFragment())
+    override fun addFragment(fragment: BaseFragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(binding.container.id, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }
@@ -36,4 +38,16 @@ class MainActivity : AppCompatActivity(), Navigator {
         binding.progressBar.visibility = View.VISIBLE
     }
 
+    override fun backFragment() {
+        onBackPressedDispatcher.onBackPressed()
+    }
+
+    private fun onBackPressedDis() {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (supportFragmentManager.backStackEntryCount == 1) finish()
+                else supportFragmentManager.popBackStack()
+            }
+        })
+    }
 }

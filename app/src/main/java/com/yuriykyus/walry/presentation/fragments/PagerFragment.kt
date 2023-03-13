@@ -11,6 +11,7 @@ import com.yuriykyus.walry.presentation.adapters.ViewPagerAdapter
 
 class PagerFragment : BaseFragment() {
 
+
     private val binding by lazy {
         FragmentPagerBinding.inflate(layoutInflater)
     }
@@ -19,7 +20,6 @@ class PagerFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -27,12 +27,19 @@ class PagerFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewPager = binding.viewPager
-        viewPager.adapter = ViewPagerAdapter(requireActivity())
+
+        viewPager.adapter = ViewPagerAdapter(parentFragmentManager, lifecycle)
 
         TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
             val vp = viewPager.adapter as ViewPagerAdapter
             tab.text = vp.fragmentName[position]
         }.attach()
+
+        binding.mainToolbar.apply {
+            btnSearch.setOnClickListener {
+                getNavigator().addFragment(SearchFragment.newInstance())
+            }
+        }
     }
 
     override fun getTitle(): String {

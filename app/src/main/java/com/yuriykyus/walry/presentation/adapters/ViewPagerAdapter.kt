@@ -2,10 +2,12 @@ package com.yuriykyus.walry.presentation.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.bumptech.glide.manager.Lifecycle
 import com.yuriykyus.walry.presentation.fragments.*
 
-class ViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
+class ViewPagerAdapter(fragment: FragmentManager, lifeCircle: androidx.lifecycle.Lifecycle) : FragmentStateAdapter(fragment,lifeCircle) {
 
     private val fragments = arrayOf(
         CategoriesFragment.newInstance(),
