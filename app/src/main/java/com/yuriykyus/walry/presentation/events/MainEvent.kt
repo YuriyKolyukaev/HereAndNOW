@@ -1,11 +1,11 @@
 package com.yuriykyus.walry.presentation.events
 
-import com.yuriykyus.walry.domain.models.PhotoData
+import com.yuriykyus.walry.presentation.fragments.FragmentTypes
 
-sealed interface MainEvent
+sealed class MainEvent(val type: FragmentTypes?)
 
-object LoadCityEvent : MainEvent
+class LoadCityEvent(type: FragmentTypes?) : MainEvent(type)
 
-class LoadPhotoEvent(val photoData: PhotoData) : MainEvent {
+class LoadPhotosEvent(type: FragmentTypes?) : MainEvent(type) {
 
 }

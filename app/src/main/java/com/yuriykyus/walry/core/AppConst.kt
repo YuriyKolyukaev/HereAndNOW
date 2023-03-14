@@ -1,9 +1,12 @@
 package com.yuriykyus.walry.core
 
-class AppConstants {
+class AppConst {
     companion object {
         const val CATEGORY_FRAGMENT_TITLE = "Категории"
-        const val CITY_FRAGMENT_TITLE = "Город"
+
+        const val CITY_PHOTOS_TAG = "Архитектура"
+        const val CITY_PHOTOS_TEXT = "Москва"
+        const val CITY_PHOTOS_TITLE = "Город"
 
         const val ILLUSTRATION_TAG = "wallpaper"
         const val ILLUSTRATION_TEXT = "illustration"

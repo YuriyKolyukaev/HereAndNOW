@@ -9,43 +9,43 @@ import com.yuriykyus.walry.core.toMutable
 import com.yuriykyus.walry.domain.models.PhotoData
 import com.yuriykyus.walry.domain.models.CityPhoto
 import com.yuriykyus.walry.domain.usecase.GetCityNameUseCase
-import com.yuriykyus.walry.domain.usecase.GetCityPhotoUseCase
-import com.yuriykyus.walry.presentation.events.LoadCityEvent
-import com.yuriykyus.walry.presentation.events.LoadPhotoEvent
+import com.yuriykyus.walry.domain.usecase.GetPhotosUseCase
 import com.yuriykyus.walry.presentation.events.MainEvent
+import com.yuriykyus.walry.presentation.fragments.FragmentTypes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PhotoViewModel(
     private val getCityNameUseCase: GetCityNameUseCase,
-    private val getCityPhotoUseCase: GetCityPhotoUseCase,
+    private val getPhotosUseCase: GetPhotosUseCase,
 ) : ViewModel() {
 
-    val listCitiesLiveData: LiveData<ViewState<List<CityPhoto>>> = MutableLiveData()
+    val listPhotosLiveData: LiveData<ViewState<List<CityPhoto>>> = MutableLiveData()
 
     fun send(event: MainEvent) {
-        when (event) {
-            is LoadCityEvent -> getCity()
-            is LoadPhotoEvent -> getCityPhotoList(photoData = event.photoData)
+        when (event.type) {
+            FragmentTypes.CityPhotos -> getCity()
+            else -> getPhotoList(photoData = PhotoData(event.type?.requestTag ?: "", event.type?.requestText ?: ""))
         }
     }
 
     fun getCity() {
-
+        val cityPhotoData = getCityNameUseCase.getCityData()
+        getPhotoList(cityPhotoData)
     }
 
-    private fun getCityPhotoList(photoData: PhotoData) {
-        listCitiesLiveData.toMutable().postProgress()
+    private fun getPhotoList(photoData: PhotoData) {
+        listPhotosLiveData.toMutable().postProgress()
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val cityName = getCityPhotoUseCase.getPhotos(photoData)
-                if (cityName.isEmpty()) {
-                    listCitiesLiveData.toMutable().postError()
+                val photoList = getPhotosUseCase.getPhotos(photoData)
+                if (photoList.isEmpty()) {
+                    listPhotosLiveData.toMutable().postError()
                 } else {
-                    listCitiesLiveData.toMutable().postSuccess(cityName)
+                    listPhotosLiveData.toMutable().postSuccess(photoList)
                 }
             } catch (e: Exception) {
-                listCitiesLiveData.toMutable().postError(e)
+                listPhotosLiveData.toMutable().postError(e)
             }
         }
     }

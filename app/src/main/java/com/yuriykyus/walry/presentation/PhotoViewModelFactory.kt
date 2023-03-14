@@ -8,7 +8,7 @@ import com.yuriykyus.walry.data.repository.CityRepositoryImpl
 import com.yuriykyus.walry.data.repository.PhotoRepositoryImpl
 import com.yuriykyus.walry.data.storage.sharedprefs.CitySharedPrefs
 import com.yuriykyus.walry.domain.usecase.GetCityNameUseCase
-import com.yuriykyus.walry.domain.usecase.GetCityPhotoUseCase
+import com.yuriykyus.walry.domain.usecase.GetPhotosUseCase
 
 class PhotoViewModelFactory(context: Context) : ViewModelProvider.Factory {
 
@@ -24,14 +24,14 @@ class PhotoViewModelFactory(context: Context) : ViewModelProvider.Factory {
         GetCityNameUseCase(cityRepository = cityRepository)
     }
 
-    private val getCityPhotoUseCase by lazy {
-        GetCityPhotoUseCase(photoRepository = photoRepository)
+    private val getPhotosUseCase by lazy {
+        GetPhotosUseCase(photoRepository = photoRepository)
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return PhotoViewModel(
             getCityNameUseCase = getCityNameUseCase,
-            getCityPhotoUseCase = getCityPhotoUseCase
+            getPhotosUseCase = getPhotosUseCase
         ) as T
     }
 

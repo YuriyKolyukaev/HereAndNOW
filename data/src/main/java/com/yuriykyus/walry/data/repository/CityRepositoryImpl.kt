@@ -23,10 +23,10 @@ class CityRepositoryImpl(private val cityStorageImpl: CityStorage) : CityReposit
     }
 
     private fun mapToStorage(photoData: PhotoData): City {
-        return City(cityName = photoData.photoText)
+        return City(cityName = photoData.text)
     }
 
     private fun mapToDomain(city: City): PhotoData {
-        return PhotoData("", city.cityName)
+        return PhotoData("Архитектура", city.cityName)
     }
 }

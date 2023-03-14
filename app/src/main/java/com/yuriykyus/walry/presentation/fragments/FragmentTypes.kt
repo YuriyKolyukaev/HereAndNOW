@@ -1,21 +1,29 @@
 package com.yuriykyus.walry.presentation.fragments
 
-import com.yuriykyus.walry.core.AppConstants
+import com.yuriykyus.walry.core.AppConst
 
 enum class FragmentTypes(val requestTag: String, val requestText: String, val title: String) {
-    NewWallpaperFragment(
-        requestTag = AppConstants.NEW_WALLPAPER_TAG,
-        requestText = AppConstants.NEW_WALLPAPER_TEXT,
-        title = AppConstants.NEW_WALLPAPER_TITLE
+    CityPhotos(
+        requestTag = AppConst.CITY_PHOTOS_TAG,
+        requestText = AppConst.CITY_PHOTOS_TEXT,
+        title = AppConst.CITY_PHOTOS_TITLE
     ),
-    IllustrationFragment(
-        requestTag = AppConstants.ILLUSTRATION_TAG,
-        requestText = AppConstants.ILLUSTRATION_TEXT,
-        title = AppConstants.ILLUSTRATION_TITLE
+
+    NewWallpaper(
+        requestTag = AppConst.NEW_WALLPAPER_TAG,
+        requestText = AppConst.NEW_WALLPAPER_TEXT,
+        title = AppConst.NEW_WALLPAPER_TITLE
     ),
-    PopWallpaperFragment(
-        requestTag = AppConstants.POP_WALLPAPER_TAG,
-        requestText = AppConstants.POP_WALLPAPER_TEXT,
-        title = AppConstants.POP_WALLPAPER_TITLE
+
+    Illustration(
+        requestTag = AppConst.ILLUSTRATION_TAG,
+        requestText = AppConst.ILLUSTRATION_TEXT,
+        title = AppConst.ILLUSTRATION_TITLE
+    ),
+
+    PopWallpaper(
+        requestTag = AppConst.POP_WALLPAPER_TAG,
+        requestText = AppConst.POP_WALLPAPER_TEXT,
+        title = AppConst.POP_WALLPAPER_TITLE
     )
 }

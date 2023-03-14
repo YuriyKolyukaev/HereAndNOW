@@ -1,5 +1,6 @@
 package com.yuriykyus.walry.presentation.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.yuriykyus.walry.core.observeViewState
 import com.yuriykyus.walry.databinding.FragmentPhotoListBinding
-import com.yuriykyus.walry.domain.models.PhotoData
 import com.yuriykyus.walry.presentation.adapters.PhotoAdapter
 import com.yuriykyus.walry.presentation.PhotoViewModel
 import com.yuriykyus.walry.presentation.PhotoViewModelFactory
-import com.yuriykyus.walry.presentation.events.LoadCityEvent
-import com.yuriykyus.walry.presentation.events.LoadPhotoEvent
+import com.yuriykyus.walry.presentation.events.LoadPhotosEvent
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM = "param"
 
 class WallppaperFragment : BaseFragment() {
+
 
     private lateinit var adapter: PhotoAdapter
 
@@ -45,23 +44,18 @@ class WallppaperFragment : BaseFragment() {
         initAdapter()
         observeViewModel()
 
-        viewModel.send(LoadCityEvent)
-        viewModel.send(
-            LoadPhotoEvent(
-                photoData = PhotoData(
-                    requireArguments().getString(ARG_PARAM1).toString(),
-                    requireArguments().getString(ARG_PARAM2).toString()
-                )
-            )
-        )
+        val fragmentType = getSerializable()
+
+        viewModel.send(LoadPhotosEvent(fragmentType))
     }
 
     private fun observeViewModel() {
-        viewModel.listCitiesLiveData.observeViewState(viewLifecycleOwner) {
+        viewModel.listPhotosLiveData.observeViewState(viewLifecycleOwner) {
             onSuccess { data ->
                 adapter.addPhotoUrlList(data)
                 hideLoad()
             }
+
             onError { error, isShowError ->
                 hideLoad()
             }
@@ -81,12 +75,19 @@ class WallppaperFragment : BaseFragment() {
         }
     }
 
+    private fun getSerializable(): FragmentTypes? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getSerializable(ARG_PARAM, FragmentTypes::class.java)
+        } else {
+            arguments?.getSerializable(ARG_PARAM) as? FragmentTypes
+        }
+    }
+
     companion object {
-        fun newInstance(requestTag: String, requestText: String) =
+        fun <E : Enum<E>> newInstance(arg: E) =
             WallppaperFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, requestTag)
-                    putString(ARG_PARAM2, requestText)
+                    putSerializable(ARG_PARAM, arg)
                 }
             }
     }

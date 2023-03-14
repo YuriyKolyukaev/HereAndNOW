@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yuriykyus.walry.core.AppConstants
+import com.yuriykyus.walry.core.AppConst
 import com.yuriykyus.walry.databinding.FragmentSearchBinding
 
 class SearchFragment : BaseFragment() {
-    companion object {
-        fun newInstance() = SearchFragment()
-    }
 
     private val binding by lazy {
         FragmentSearchBinding.inflate(layoutInflater)
@@ -30,6 +27,10 @@ class SearchFragment : BaseFragment() {
     }
 
     fun getTitle(): String {
-        return AppConstants.SEARCH_FRAGMENT
+        return AppConst.SEARCH_FRAGMENT
+    }
+
+    companion object {
+        fun newInstance() = SearchFragment()
     }
 }
