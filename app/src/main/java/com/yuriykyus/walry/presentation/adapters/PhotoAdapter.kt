@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.yuriykyus.walry.R
 import com.yuriykyus.walry.databinding.PhotoItemBinding
-import com.yuriykyus.walry.domain.models.CityPhoto
+import com.yuriykyus.walry.domain.models.PhotoUrl
 
 class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoHolder>() {
 
-    private val photoUrlList = ArrayList<CityPhoto>()
+    private val photoUrlList = ArrayList<PhotoUrl>()
 
-    fun addPhotoUrlList(data: List<CityPhoto>) {
+    fun addPhotoUrlList(data: List<PhotoUrl>) {
+        photoUrlList.clear()
         photoUrlList.addAll(data)
         notifyDataSetChanged()
     }
@@ -34,7 +35,7 @@ class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoHolder>() {
     class PhotoHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = PhotoItemBinding.bind(item)
 
-        fun bind(url: CityPhoto) = with(binding) {
+        fun bind(url: PhotoUrl) = with(binding) {
             Glide.with(binding.cvPhoto)
                 .asBitmap()
                 .centerCrop()

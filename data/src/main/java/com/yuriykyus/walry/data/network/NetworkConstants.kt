@@ -4,7 +4,7 @@ class NetworkConstants {
     companion object {
         const val API_METHOD_NAME = "flickr.photos.search"
         const val API_RESPONSE_FORMAT = "json"
-        const val API_CONTENT_TYPE = 6
+        const val API_CONTENT_TYPE_DEFAULT = 6
         const val API_CALLBACK_NUMBER = "1"
 
         const val KEY: String = "71494011b0ac7c0b1e6e4bf02f76a363"

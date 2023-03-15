@@ -4,6 +4,8 @@ class AppConst {
     companion object {
         const val CATEGORY_FRAGMENT_TITLE = "Категории"
 
+        const val SEARCH_WALLPAPER_TITLE = "Поиск"
+
         const val CITY_PHOTOS_TAG = "Архитектура"
         const val CITY_PHOTOS_TEXT = "Москва"
         const val CITY_PHOTOS_TITLE = "Город"

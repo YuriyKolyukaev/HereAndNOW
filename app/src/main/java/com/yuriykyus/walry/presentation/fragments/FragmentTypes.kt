@@ -2,7 +2,10 @@ package com.yuriykyus.walry.presentation.fragments
 
 import com.yuriykyus.walry.core.AppConst
 
-enum class FragmentTypes(val requestTag: String, val requestText: String, val title: String) {
+enum class FragmentTypes(val requestTag: String = "", val requestText: String = "", val title: String) {
+
+    SearchPhoto(title = AppConst.SEARCH_WALLPAPER_TITLE),
+
     CityPhotos(
         requestTag = AppConst.CITY_PHOTOS_TAG,
         requestText = AppConst.CITY_PHOTOS_TEXT,

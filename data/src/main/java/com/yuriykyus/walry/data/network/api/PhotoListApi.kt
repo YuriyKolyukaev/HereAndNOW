@@ -16,4 +16,15 @@ interface PhotoListApi {
         @Query("format") format: String,
         @Query("nojsoncallback") callBack: String
     ): PhotosData?
+
+    @GET("/services/rest/")
+    suspend fun getSearchPhotoList(
+        @Query("method") method: String,
+        @Query("api_key") key: String,
+        @Query("tags") tags: String,
+        @Query("text") text: String,
+        @Query("content_type") type: Int,
+        @Query("format") format: String,
+        @Query("nojsoncallback") callBack: String
+    ): PhotosData?
 }

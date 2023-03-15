@@ -18,19 +18,16 @@ private const val ARG_PARAM = "param"
 
 class WallppaperFragment : BaseFragment() {
 
+    private val binding by lazy {
+        FragmentPhotoListBinding.inflate(layoutInflater)
+    }
 
     private lateinit var adapter: PhotoAdapter
 
     private val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            PhotoViewModelFactory(requireActivity())
-        )[PhotoViewModel::class.java]
+        ViewModelProvider(this, PhotoViewModelFactory(requireActivity()))[PhotoViewModel::class.java]
     }
 
-    private val binding by lazy {
-        FragmentPhotoListBinding.inflate(layoutInflater)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

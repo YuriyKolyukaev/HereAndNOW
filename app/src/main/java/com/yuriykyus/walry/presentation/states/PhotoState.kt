@@ -1,6 +1,6 @@
 package com.yuriykyus.walry.presentation.states
 
-import com.yuriykyus.walry.domain.models.CityPhoto
+import com.yuriykyus.walry.domain.models.PhotoUrl
 
-data class PhotoState(val photosUrl: List<CityPhoto>) : MainState {
+data class PhotoState(val photosUrl: List<PhotoUrl>) : MainState {
 }

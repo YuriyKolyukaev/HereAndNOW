@@ -8,42 +8,11 @@
     android:padding="8dp"
     tools:context=".presentation.fragments.SearchFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/grey"
-        app:cardCornerRadius="9dp">
+    <include
+        android:id="@+id/searchToolbar"
+        layout="@layout/search_toolbar" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="4dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_search"
-                app:tint="@color/white" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints=""
-                android:background="@android:color/transparent"
-                android:hint="Search For..."
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/white" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -56,10 +25,13 @@
                 android:id="@+id/chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                app:checkedChip="@id/chipEverywhere"
+                app:selectionRequired="true"
+                app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipG"
+                    android:id="@+id/chipEverywhere"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
@@ -67,7 +39,7 @@
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Искать везде"
+                    android:text="@string/search_everywhere"
                     android:textAlignment="center"
                     android:textColor="@drawable/tv_chip_state_list"
                     android:textSize="16sp"
@@ -78,7 +50,6 @@
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
@@ -86,7 +57,7 @@
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Фотографии"
+                    android:text="@string/photos"
                     android:textAlignment="center"
                     android:textColor="@drawable/tv_chip_state_list"
                     android:textSize="16sp"
@@ -97,7 +68,6 @@
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
@@ -105,7 +75,7 @@
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Скриншоты"
+                    android:text="@string/screenshots"
                     android:textAlignment="center"
                     android:textColor="@drawable/tv_chip_state_list"
                     android:textSize="16sp"
@@ -116,7 +86,6 @@
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
@@ -124,7 +93,7 @@
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Другое"
+                    android:text="@string/other"
                     android:textAlignment="center"
                     android:textColor="@drawable/tv_chip_state_list"
                     android:textSize="16sp"
@@ -135,7 +104,6 @@
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
@@ -143,7 +111,7 @@
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Фотографии и скриншоты"
+                    android:text="@string/photos_and_screenshots"
                     android:textAlignment="center"
                     android:textColor="@drawable/tv_chip_state_list"
                     android:textSize="16sp"
@@ -154,7 +122,6 @@
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
@@ -162,7 +129,7 @@
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Фотографии и другое"
+                    android:text="@string/photos_and_other"
                     android:textAlignment="center"
                     android:textColor="@drawable/tv_chip_state_list"
                     android:textSize="16sp"
@@ -173,7 +140,6 @@
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
@@ -181,7 +147,7 @@
                     android:checkable="true"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Скриншоты и другое"
+                    android:text="@string/screenshots_and_other"
                     android:textAlignment="center"
                     android:textColor="@drawable/tv_chip_state_list"
                     android:textSize="16sp"
@@ -192,6 +158,10 @@
                     app:chipStrokeWidth="1dp" />
             </com.google.android.material.chip.ChipGroup>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </LinearLayout>
