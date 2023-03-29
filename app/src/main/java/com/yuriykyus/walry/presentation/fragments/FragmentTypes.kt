@@ -1,6 +1,6 @@
 package com.yuriykyus.walry.presentation.fragments
 
-import com.yuriykyus.walry.core.AppConst
+import com.yuriykyus.walry.app.AppConst
 
 enum class FragmentTypes(val requestTag: String = "", val requestText: String = "", val title: String) {
 

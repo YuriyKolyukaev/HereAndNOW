@@ -7,27 +7,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.yuriykyus.walry.core.observeViewState
+import com.yuriykyus.walry.app.App
+import com.yuriykyus.walry.app.observeViewState
 import com.yuriykyus.walry.databinding.FragmentPhotoListBinding
+import com.yuriykyus.walry.presentation.MainActivity
 import com.yuriykyus.walry.presentation.adapters.PhotoAdapter
 import com.yuriykyus.walry.presentation.PhotoViewModel
 import com.yuriykyus.walry.presentation.PhotoViewModelFactory
 import com.yuriykyus.walry.presentation.events.LoadPhotosEvent
+import javax.inject.Inject
 
 private const val ARG_PARAM = "param"
 
-class WallppaperFragment : BaseFragment() {
+class WallpaperFragment : BaseFragment() {
 
     private val binding by lazy {
         FragmentPhotoListBinding.inflate(layoutInflater)
     }
 
-    private lateinit var adapter: PhotoAdapter
+    @Inject
+    lateinit var photoViewModelFactory: PhotoViewModelFactory
 
     private val viewModel by lazy {
-        ViewModelProvider(this, PhotoViewModelFactory(requireActivity()))[PhotoViewModel::class.java]
+        ViewModelProvider(this, photoViewModelFactory)[PhotoViewModel::class.java]
     }
 
+    private lateinit var adapter: PhotoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +43,8 @@ class WallppaperFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ((requireActivity() as MainActivity).applicationContext as App).appComponent.inject(this)
+
         initAdapter()
         observeViewModel()
 
@@ -82,7 +89,7 @@ class WallppaperFragment : BaseFragment() {
 
     companion object {
         fun <E : Enum<E>> newInstance(arg: E) =
-            WallppaperFragment().apply {
+            WallpaperFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_PARAM, arg)
                 }

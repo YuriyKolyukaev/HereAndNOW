@@ -1,7 +1,6 @@
 package com.yuriykyus.walry.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +9,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.chip.Chip
 import com.yuriykyus.walry.R
-import com.yuriykyus.walry.core.AppConst
-import com.yuriykyus.walry.core.observeViewState
+import com.yuriykyus.walry.app.App
+import com.yuriykyus.walry.app.observeViewState
 import com.yuriykyus.walry.databinding.FragmentSearchBinding
-import com.yuriykyus.walry.domain.models.PhotoData
 import com.yuriykyus.walry.domain.models.SearchData
+import com.yuriykyus.walry.presentation.MainActivity
 import com.yuriykyus.walry.presentation.PhotoViewModel
 import com.yuriykyus.walry.presentation.PhotoViewModelFactory
 import com.yuriykyus.walry.presentation.adapters.PhotoAdapter
 import com.yuriykyus.walry.presentation.events.LoadPhotoSearchEvent
-import com.yuriykyus.walry.presentation.events.LoadPhotosEvent
-import kotlin.math.log
+import javax.inject.Inject
 
 class SearchFragment : BaseFragment() {
 
@@ -28,11 +26,14 @@ class SearchFragment : BaseFragment() {
         FragmentSearchBinding.inflate(layoutInflater)
     }
 
-    private lateinit var adapter: PhotoAdapter
+    @Inject
+    lateinit var viewModelFactory: PhotoViewModelFactory
 
     private val viewModel by lazy {
-        ViewModelProvider(this, PhotoViewModelFactory(requireActivity()))[PhotoViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[PhotoViewModel::class.java]
     }
+
+    private lateinit var adapter: PhotoAdapter
 
     private val searchParamMap by lazy {
         mapOf(
@@ -56,6 +57,8 @@ class SearchFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ((requireActivity() as MainActivity).applicationContext as App).appComponent.inject(this)
+
         initAdapter()
         observeViewModel()
 

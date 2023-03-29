@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity(), Navigator {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        addFragment(PagerFragment())
 
+        addFragment(PagerFragment())
         onBackPressedDis()
     }
 

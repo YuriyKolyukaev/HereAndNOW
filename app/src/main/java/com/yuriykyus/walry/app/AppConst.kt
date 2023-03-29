@@ -1,4 +1,4 @@
-package com.yuriykyus.walry.core
+package com.yuriykyus.walry.app
 
 class AppConst {
     companion object {

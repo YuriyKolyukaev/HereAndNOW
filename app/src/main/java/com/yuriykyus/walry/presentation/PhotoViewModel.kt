@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yuriykyus.walry.core.*
-import com.yuriykyus.walry.core.toMutable
+import com.yuriykyus.walry.app.*
+import com.yuriykyus.walry.app.toMutable
 import com.yuriykyus.walry.domain.models.PhotoData
 import com.yuriykyus.walry.domain.models.PhotoUrl
 import com.yuriykyus.walry.domain.models.SearchData
